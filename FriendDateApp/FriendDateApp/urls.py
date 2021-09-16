@@ -20,5 +20,6 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('FriendApp/', include('FriendApp.urls')),
-    path ('', RedirectView.as_view(url='/FriendApp/'))
+    path ('', RedirectView.as_view(url='/FriendApp/')),
+    path('api/auth/', include('authentication.urls'))
 ]

@@ -1,8 +1,5 @@
-from django.contrib.auth.models import User
-from .serializers import RegistrationSerializer
-from rest_framework import generics
-from rest_framework.permissions import AllowAny
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from django.http import Http404
 from django.http import HttpResponse
 from django.http import HttpResponse, HttpResponseRedirect
@@ -13,12 +10,6 @@ from rest_framework.response import Response
 from rest_framework import status
 
 # Create your views here.
-
-class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
-    permission_classes = (AllowAny,)
-    serializer_class = RegistrationSerializer
-
 
 def index(request):
     return render(request, 'FriendApp/index.html')

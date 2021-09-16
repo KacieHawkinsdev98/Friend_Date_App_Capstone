@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'FriendApp',
     'corsheaders'
+    'authentication.apps.AuthenticationConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
