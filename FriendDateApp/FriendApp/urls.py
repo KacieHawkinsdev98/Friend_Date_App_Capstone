@@ -1,9 +1,13 @@
-from django.urls.resolvers import URLPattern
-from . import views
+from .import views
 from django.urls import path 
+from .serializers import User 
 
-app_name = 'FriendApp'
+
 urlpatterns = [
-    path('', views.index, name='index')
+    path('', views.index, name='index'),
+    path('user/', views.UserList.as_view()),
+    path('user/<int:pk>/', views.UserDetail.as_view()),
+
 ]
+
 
