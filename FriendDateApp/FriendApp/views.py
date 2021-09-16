@@ -1,7 +1,10 @@
+from django.contrib.auth.models import User
+from .serializers import RegistrationSerializer
+from rest_framework import generics
+from rest_framework.permissions import AllowAny
 from django.shortcuts import render
 from django.http import Http404
 from django.http import HttpResponse
-from .models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse 
 from .serializers import UserSerializer
@@ -9,19 +12,16 @@ from rest_framework.views import APIView
 from rest_framework.response import Response 
 from rest_framework import status
 
-
-
 # Create your views here.
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    permission_classes = (AllowAny,)
+    serializer_class = RegistrationSerializer
 
 
 def index(request):
     return render(request, 'FriendApp/index.html')
-
-#def create(request):
-    # if request.method == 'POST':
-        # first_name = request.POST.get('first_name')
-        # last_name = request.Post.get('last_name')
-
 
 
 class UserList(APIView):
@@ -54,8 +54,8 @@ class UserDetail(APIView):
 
     def delete(self, request, pk):
         users = self.get_object(pk)
-        serializer = UserSerializer(user)
-        comment.delete()
+        serializer = UserSerializer(users)
+        users.delete()
         return Response(serializer.data)    
 
 
