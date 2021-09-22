@@ -13,6 +13,8 @@ class User(models.Model):
     age = models.IntegerField()
     gender = models.CharField(max_length=50)
     bio = models.CharField(max_length=50)
+    profile = models.CharField
+
 
 
  
@@ -41,9 +43,17 @@ class Dislikes(models.Model):
   
 
 
-class Profiles(models.Model):
+class Profile(models.Model):
+  user = models.OneToOneField(User, on_delete=models.CASCADE)
+  bio = models.CharField(max_length=500)
   profile_id = models.IntegerField()
-  user_id = models.CharField(max_length=50)
+  image = models.ImageField('default.jpg', upload_to='profile_pics')
+  
+  def __str__(self):
+     return f'{self.user.username} Profile'
+
+
+
 
 
 
